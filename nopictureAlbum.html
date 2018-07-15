@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <style type="text/css">
+            .box{
+               text-align: center;
+                width: 1000px;
+                height: 300px;
+            }
+            .btn{
+                display: inline-block;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid #ccc;
+                background-color: #fff;
+                padding: 0 10px;
+                margin-right: 50px;
+                color: green;
+                text-decoration: none;
+            }
+            .btn:hover{
+                background-color: #eee;
+            }
+        </style>
+	</head>
+	<body>
+        <div class="box">
+            <img src="http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/1.jpg" alt="" id="img" width="1000" height="500" />
+            <p>
+               <a href="javascript:;" class="btn" data-control='prev'>上一页</a>
+               <a href="javascript:;" class="btn" data-control='next'>下一页</a>
+            </p>
+        </div>
+        <script type="text/javascript" src="http://www.gov.cn/govweb/xhtml/2016gov/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+
+            var imgs=[
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/1.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/2.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/3.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/4.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/5.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/6.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/7.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/8.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/9.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/10.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/11.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/12.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/13.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/14.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/15.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/16.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/17.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/18.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/19.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/20.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/21.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/22.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/23.jpg',
+            'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/1.jpg'
+        ];
+
+        var index = 0,
+            len = imgs.length;
+
+        $('.btn').on('click', function (argument) {
+            if ($(this).attr('data-control') === 'prev') {
+                index--;
+
+               if (index < 0 ) {
+                    index = 0;
+               }
+               index = Math.max(0, --index);
+
+
+            } else {
+                index = Math.min(len - 1, ++index);
+            }
+
+            document.title = ( index +1 ) + '/' +len;
+
+            $('#img').attr('src', imgs[index]);
+        })
+      //没有使用预加载会造成图片假死状态，影响用户体验
+        </script>
+	</body>
+</html>
