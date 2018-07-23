@@ -50,6 +50,7 @@
             <p class="progress">0%</p>
         </div>
         <script type="text/javascript" src="http://www.gov.cn/govweb/xhtml/2016gov/js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/preload.js"></script>
         <script type="text/javascript">
 
             var imgs=[
@@ -78,31 +79,36 @@
                 'http://www.gov.cn/govweb/xhtml/zhuanti/20180711lkqfwdgeAlbums/images/23.jpg'
                 
             ];
-
             var index = 0,
-                len = imgs.length,
-                count = 0,
-                $progress = $('.progress'),
+            
+            	len = imgs.length,
+            	
+				$progress = $('.progress'),
 
                 $loading = $('.loading');
-
-            $.each(imgs, function(i, src){
                 
-                var imgObj = new Image();
-				console.log(imgObj)
-                $(imgObj).on('load error', function () {
-                    count++;
-                   
-                    $progress.html(Math.round( (count+1)/len*100) + '%');
-
+           /* $.preLoad({
+            	imgsArr:imgs,
+            	each:function (count, len) {
+                    $progress.html( Math.round( count/len*100 )+'%' );
+                },
+                all:function () {
                     $loading.hide();
-
-                });
-                
-               imgObj.src = src;
+                },
+	            order:true
             });
-
-            $('.btn').on('click', function (argument) {
+*/
+			$('.box').preLoad({
+            	imgsArr:imgs,
+            	each:function (count, len) {
+                    $progress.html( Math.round( count/len*100 )+'%' );
+                },
+                all:function () {
+                    $loading.hide();
+                },
+	            order:true
+            });
+            $('.btn').on('click', function () {
                 if ($(this).attr('data-control') === 'prev') {
                    
 
@@ -116,10 +122,7 @@
                 document.title = ( index +1 ) + '/' +len;
 
                 $('#img').attr('src', imgs[index]);
-
-
-            });
-            
+            })
         </script>
     </body>
 </html>
